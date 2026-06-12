@@ -187,11 +187,14 @@ def extract_listings(
             continue
 
         title = anchor.text or anchor.title or anchor.aria_label or title_from_url(url)
-        listings_by_id[url] = Listing(
-            source=source_name,
-            title=title,
-            url=url,
-            listing_id=url,
+        listings_by_id.setdefault(
+            url,
+            Listing(
+                source=source_name,
+                title=title,
+                url=url,
+                listing_id=url,
+            ),
         )
 
     return list(listings_by_id.values())
