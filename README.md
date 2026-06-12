@@ -44,19 +44,19 @@ Edit `config.json`:
 Test what the monitor can detect:
 
 ```bash
-python -m notify_me --config config.json --list-current
+python3 -m notify_me --config config.json --list-current
 ```
 
 Record the current listings without external notifications:
 
 ```bash
-python -m notify_me --config config.json
+python3 -m notify_me --config config.json
 ```
 
 Run continuously every 15 minutes on your own machine:
 
 ```bash
-python -m notify_me --config config.json --interval-seconds 900
+python3 -m notify_me --config config.json --interval-seconds 900
 ```
 
 ## Notifications
@@ -84,7 +84,7 @@ Then run:
 ```bash
 export TELEGRAM_BOT_TOKEN="123456:your-token"
 export TELEGRAM_CHAT_ID="123456789"
-python -m notify_me --config config.json
+python3 -m notify_me --config config.json
 ```
 
 ### Discord
@@ -180,5 +180,5 @@ Use `--list-current` to check whether your regex finds actual listing pages.
 Run the tests:
 
 ```bash
-python -m unittest discover
+python3 -m unittest discover
 ```

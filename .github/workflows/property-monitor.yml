@@ -40,4 +40,4 @@ jobs:
             exit 0
           fi
 
-          python -m notify_me --config config.json
+          python3 -m notify_me --config config.json
