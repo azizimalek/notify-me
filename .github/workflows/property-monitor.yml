@@ -1,0 +1,43 @@
+name: Property listing monitor
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Restore listing state
+        uses: actions/cache@v4
+        with:
+          path: state
+          key: property-listing-state-${{ github.run_id }}
+          restore-keys: |
+            property-listing-state-
+
+      - name: Run monitor
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          NOTIFY_WEBHOOK_URL: ${{ secrets.NOTIFY_WEBHOOK_URL }}
+        run: |
+          if [ ! -f config.json ]; then
+            echo "No config.json found. Copy config.example.json to config.json and enable at least one source."
+            exit 0
+          fi
+
+          python -m notify_me --config config.json

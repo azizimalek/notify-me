@@ -1,0 +1,69 @@
+{
+  "state_file": "state/listings.json",
+  "notify_on_first_run": false,
+  "max_new_per_source": 10,
+  "max_seen_per_source": 5000,
+  "request": {
+    "timeout_seconds": 20,
+    "delay_seconds": 3,
+    "max_response_bytes": 5000000,
+    "user_agent": "notify-me-property-monitor/0.1 personal rental search"
+  },
+  "notifications": {
+    "max_message_chars": 3800,
+    "console": {
+      "enabled": true
+    },
+    "telegram": {
+      "enabled": false,
+      "bot_token_env": "TELEGRAM_BOT_TOKEN",
+      "chat_id_env": "TELEGRAM_CHAT_ID"
+    },
+    "discord": {
+      "enabled": false,
+      "webhook_url_env": "DISCORD_WEBHOOK_URL"
+    },
+    "webhook": {
+      "enabled": false,
+      "url_env": "NOTIFY_WEBHOOK_URL"
+    }
+  },
+  "sources": [
+    {
+      "name": "PropertyGuru Malaysia saved search",
+      "enabled": false,
+      "url": "https://www.propertyguru.com.my/property-for-rent?market=residential",
+      "listing_url_patterns": [
+        "propertyguru\\.com\\.my/property-listing/"
+      ],
+      "exclude_url_patterns": []
+    },
+    {
+      "name": "iProperty Malaysia saved search",
+      "enabled": false,
+      "url": "https://www.iproperty.com.my/rent/",
+      "listing_url_patterns": [
+        "iproperty\\.com\\.my/property/"
+      ],
+      "exclude_url_patterns": []
+    },
+    {
+      "name": "Mudah.my saved search",
+      "enabled": false,
+      "url": "https://www.mudah.my/malaysia/properties-for-rent",
+      "listing_url_patterns": [
+        "mudah\\.my/.+\\.htm"
+      ],
+      "exclude_url_patterns": []
+    },
+    {
+      "name": "Another rental site",
+      "enabled": false,
+      "url": "https://example.com/rentals?area=your-area",
+      "listing_url_patterns": [
+        "example\\.com/.*/rent"
+      ],
+      "exclude_url_patterns": []
+    }
+  ]
+}

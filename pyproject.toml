@@ -1,0 +1,9 @@
+[project]
+name = "notify-me"
+version = "0.1.0"
+description = "Monitor property rental listings and send notifications."
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+notify-me = "notify_me.cli:main"
